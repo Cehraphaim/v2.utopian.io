@@ -20,24 +20,29 @@ module.exports = function (ctx) {
     supportIE: true,
     build: {
       scopeHoisting: true,
-      // vueRouterMode: 'history',
+      vueRouterMode: 'history',
       // vueCompiler: true,
       // gzip: true,
       // analyze: true,
       // extractCSS: false,
       extendWebpack (cfg) {
+        // main loader / js config.
         cfg.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /node_modules/
+          exclude: /(node_modules|quasar)/
+        })
+        cfg.module.rules.push({
+          test: /\.pug$/,
+          loader: 'pug-plain-loader'
         })
       }
     },
+    // dev server configuration.
     devServer: {
-      // https: true,
-      // port: 8080,
-      open: true // opens browser window automatically
+      port: 8081,
+      open: false // no auto browser.
     },
     // framework: 'all' --- includes everything; for dev only!
     framework: {

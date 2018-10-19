@@ -52,7 +52,7 @@ module.exports = function (ctx) {
     // dev server configuration.
     devServer: {
       port: 8080,
-      open: false, // no auto browser.
+      open: false // no auto browser.
     },
     // framework configuration.
     framework: {
