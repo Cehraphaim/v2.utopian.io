@@ -26,5 +26,5 @@ u-layout-page.u-page-users-create(:meta="false")
                 :color="user.usernameAvailable === true ? 'green' : 'primary'"
               )
 
-          div.col-12
+          div.col-12.q-mt-sm
             q-btn.full-width(color="primary", label="Create", @click="submit", :disabled="user.usernameAvailable !== true")
