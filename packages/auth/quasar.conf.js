@@ -10,8 +10,9 @@ module.exports = function (ctx) {
     // app plugins (/src/plugins)
     extras: ['roboto-font', 'mdi'],
     plugins: [
+      'axios',
       'i18n',
-      'axios'
+      'vuelidate'
     ],
     build: {
       env: {
@@ -46,20 +47,22 @@ module.exports = function (ctx) {
     // framework: 'all' --- includes everything; for dev only!
     framework: {
       components: [
-        'QLayout',
-        'QLayoutHeader',
-        'QLayoutDrawer',
-        'QPageContainer',
-        'QPage',
-        'QToolbar',
-        'QToolbarTitle',
         'QBtn',
+        'QField',
         'QIcon',
-        'QList',
-        'QListHeader',
+        'QInput',
         'QItem',
         'QItemMain',
-        'QItemSide'
+        'QItemSide',
+        'QLayout',
+        'QLayoutDrawer',
+        'QLayoutHeader',
+        'QList',
+        'QListHeader',
+        'QPage',
+        'QPageContainer',
+        'QToolbar',
+        'QToolbarTitle'
       ],
       directives: [
         'Ripple'

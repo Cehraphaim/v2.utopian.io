@@ -3,11 +3,17 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 // import store modules.
+import api from './api'
 import auth from './auth'
+import users from './users'
+import utils from './utils'
 
 // join modules.
 const modules = {
-  auth
+  api,
+  auth,
+  users,
+  utils
 }
 
 // enable vuex.
