@@ -210,7 +210,6 @@ import FastClick from 'fastclick'
 
 
 Vue.config.devtools = true
-Vue.config.performance = true
 Vue.config.productionTip = false
 
 

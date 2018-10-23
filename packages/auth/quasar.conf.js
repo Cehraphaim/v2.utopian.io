@@ -1,5 +1,7 @@
-// Configuration for your app
+// environment config.
+require('dotenv').config()
 
+// Configuration for your app
 module.exports = function (ctx) {
   return {
     // app plugins (/src/plugins)
@@ -19,6 +21,12 @@ module.exports = function (ctx) {
     ],
     supportIE: true,
     build: {
+      env: {
+        UTOPIAN_API: process.env.UTOPIAN_API,
+        GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+        STEEMCONNECT_CLIENT_ID: (process.env.STEEMCONNECT_CLIENT_ID || '"utopian.signin"'),
+        STEEM_API: (process.env.STEEM_API_DEV || '"https://api.steemit.com"')
+      },
       scopeHoisting: true,
       vueRouterMode: 'history',
       // vueCompiler: true,

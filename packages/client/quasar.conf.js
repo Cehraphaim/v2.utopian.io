@@ -182,7 +182,7 @@ module.exports = function (ctx) {
       }
     },
     ssr: {
-      pwa: true,
+      pwa: true
     },
     starterKit: '1.0.2'
   }
