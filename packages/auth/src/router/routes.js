@@ -4,6 +4,11 @@ const routes = [
     path: '/',
     name: 'login',
     component: () => import('src/pages/login/login')
+  },
+  { // Always leave this as last one
+    path: '*',
+    name: 'not-found',
+    component: () => import('src/pages/404/404')
   }
 ]
 
@@ -11,7 +16,7 @@ const routes = [
 if (process.env.MODE !== 'ssr') {
   routes.push({
     path: '*',
-    component: () => import('pages/Error404.vue')
+    component: () => import('pages/404/404.vue')
   })
 }
 

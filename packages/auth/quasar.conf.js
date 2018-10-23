@@ -4,22 +4,15 @@ require('dotenv').config()
 // Configuration for your app
 module.exports = function (ctx) {
   return {
+    preFetch: true,
+    supportIE: false,
+    css: ['app.styl'],
     // app plugins (/src/plugins)
+    extras: ['roboto-font', 'mdi'],
     plugins: [
       'i18n',
       'axios'
     ],
-    css: [
-      'app.styl'
-    ],
-    extras: [
-      ctx.theme.mat ? 'roboto-font' : null,
-      'material-icons' // optional, you are not bound to it
-      // 'ionicons',
-      // 'mdi',
-      // 'fontawesome'
-    ],
-    supportIE: true,
     build: {
       env: {
         UTOPIAN_API: process.env.UTOPIAN_API,
@@ -29,10 +22,8 @@ module.exports = function (ctx) {
       },
       scopeHoisting: true,
       vueRouterMode: 'history',
-      // vueCompiler: true,
-      // gzip: true,
-      // analyze: true,
-      // extractCSS: false,
+      useNotifier: false,
+
       extendWebpack (cfg) {
         // main loader / js config.
         cfg.module.rules.push({
@@ -77,13 +68,11 @@ module.exports = function (ctx) {
       plugins: [
         'Notify'
       ]
-      // iconSet: ctx.theme.mat ? 'material-icons' : 'ionicons'
-      // i18n: 'de' // Quasar language
     },
     // animations: 'all' --- includes all animations
     animations: [],
     ssr: {
-      pwa: false
+      pwa: true
     },
     pwa: {
       // workboxPluginMode: 'InjectManifest',
@@ -125,31 +114,6 @@ module.exports = function (ctx) {
         ]
       }
     },
-    cordova: {
-      // id: 'org.cordova.quasar.app'
-    },
-    electron: {
-      // bundler: 'builder', // or 'packager'
-      extendWebpack (cfg) {
-        // do something with Electron process Webpack cfg
-      },
-      packager: {
-        // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
-
-        // OS X / Mac App Store
-        // appBundleId: '',
-        // appCategoryType: '',
-        // osxSign: '',
-        // protocol: 'myapp://path',
-
-        // Window only
-        // win32metadata: { ... }
-      },
-      builder: {
-        // https://www.electron.build/configuration/configuration
-
-        // appId: 'quasar-app'
-      }
-    }
+    starterKit: '1.0.2'
   }
 }
