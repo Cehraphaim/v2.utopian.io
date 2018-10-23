@@ -1,24 +1,11 @@
 <script>
-// imports.
-import ULayoutPage from 'src/layouts/parts/page/page'
 import { required, minLength, maxLength, helpers } from 'vuelidate/lib/validators'
 import { mapGetters, mapActions } from 'vuex'
 import jwt from 'jsonwebtoken'
-import { Cookies } from 'quasar'
+import { Cookies, debounce } from 'quasar'
 
-import * as _ from 'lodash'
-
-// create user component export.
 export default {
-  
-  // component name.
   name: 'u-page-users-create',
-
-  // child components.
-  components: {
-    ULayoutPage
-  },
-  
   preFetch ({ redirect, ssrContext }) {
     const cookies = process.env.SERVER ? Cookies.parseSSR(ssrContext) : Cookies
     let scopes = jwt.decode(cookies.get('access_token')).scopes
@@ -74,7 +61,7 @@ export default {
       this.user.usernameAvailable = 'checking'
       this.checkUsername()
     },
-    checkUsername: _.debounce(async function () {
+    checkUsername: debounce(async function () {
       const usernameValidator = this.$v.user.username
       this.$v.user.$touch()
       if (this.user.username.length > 2 && usernameValidator.minLength &&
