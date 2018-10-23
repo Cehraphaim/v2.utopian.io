@@ -90,14 +90,14 @@ export default {
     async submit () {
       this.$v.user.$touch()
 
-      this.startLoading('Creating account')
+      // this.startLoading('Creating account')
       try {
         await this.saveUser({ username: this.user.username })
-        this.stopLoading()
+        // this.stopLoading()
         this.$router.push({ name: 'home' })
       } catch (err) {
-        this.stopLoading()
-        this.showDialog({ title: 'Oops :(', message: 'We couldn\'t create your account. Please try again.' })
+        // this.stopLoading()
+        // this.showDialog({ title: 'Oops :(', message: 'We couldn\'t create your account. Please try again.' })
       }
     }
   }
