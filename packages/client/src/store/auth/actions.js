@@ -1,6 +1,5 @@
 import { Cookies } from 'quasar'
 import API from 'src/plugins/api'
-import { btoa } from 'b2a'
 
 export const me = async (context) => {
   const payload = await API.call({
@@ -20,8 +19,7 @@ export const logout = ({ dispatch, commit }) => {
 }
 
 export const startGithubLogin = () => {
-  const stateParameter = btoa(`githublogin::${window.location.href}`)
-  window.location = `https://github.com/login/oauth/authorize?scope=read:user,repo&client_id=${process.env.GITHUB_CLIENT_ID}&state=${stateParameter}`
+  window.location = `${process.env.AUTH_DOMAIN}/login?redirectUrl=${window.location.href}`
 }
 
 export const startSteemConnectLogin = () => {

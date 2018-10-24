@@ -24,6 +24,7 @@ module.exports = function (ctx) {
     build: {
       env: {
         UTOPIAN_API: process.env.UTOPIAN_API,
+        AUTH_DOMAIN: process.env.AUTH_DOMAIN,
         GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
         STEEMCONNECT_CLIENT_ID: (process.env.STEEMCONNECT_CLIENT_ID || '"utopian.signin"'),
         STEEM_API: (process.env.STEEM_API_DEV || '"https://api.steemit.com"')

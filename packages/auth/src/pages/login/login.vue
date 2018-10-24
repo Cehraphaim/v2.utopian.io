@@ -1,4 +1,6 @@
 <script>
+import { btoa } from 'b2a'
+
 export default {
   preFetch ({ store, redirect }) {
     if (store.state.auth.user) {
@@ -8,7 +10,7 @@ export default {
   name: 'u-page-login',
   methods: {
     startGithubLogin () {
-      const state = window.btoa(`githublogin::${process.env.UTOPIAN_DOMAIN}`)
+      const state = btoa(`githublogin::${this.$route.query.redirectUrl}`)
       window.location = `https://github.com/login/oauth/authorize?scope=read:user,repo&client_id=${process.env.GITHUB_CLIENT_ID}&redirect_uri=${process.env.AUTH_DOMAIN}&state=${state}`
     }
   }
