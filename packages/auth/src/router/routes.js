@@ -1,6 +1,11 @@
 
 const routes = [
   {
+    path: '/',
+    name: 'home',
+    component: () => import('src/pages/redirect/redirect')
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import('src/pages/login/login')
@@ -21,7 +26,7 @@ const routes = [
 if (process.env.MODE !== 'ssr') {
   routes.push({
     path: '*',
-    component: () => import('pages/404/404.vue')
+    component: () => import('src/pages/404/404')
   })
 }
 

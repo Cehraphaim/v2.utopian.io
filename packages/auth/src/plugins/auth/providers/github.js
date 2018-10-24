@@ -28,7 +28,9 @@ export default async ({ currentRoute, store, redirect, ssrContext, redirectUrl }
     })
 
     if (!token.username) {
-      redirect(redirectUrl)
+      redirect('user/create/')
+    } else {
+      redirect(`/?redirectUrl=${redirectUrl}`)
     }
   }
 }
