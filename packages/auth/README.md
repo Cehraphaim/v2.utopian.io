@@ -1,3 +1,7 @@
-# auth.utopian.io
+# Quasar App
 
-This app is responsible for handling authentication and account creation for v2.utopian.io.
+> WIP
+
+### License
+
+GPL-3.0 Copyright (c) 2018 Utopian Company SRLs.
