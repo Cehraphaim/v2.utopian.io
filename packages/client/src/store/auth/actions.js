@@ -18,10 +18,6 @@ export const logout = ({ dispatch, commit }) => {
   commit('clear')
 }
 
-export const startGithubLogin = () => {
-  window.location = `${process.env.AUTH_DOMAIN}/login?redirectUrl=${window.location.href}`
-}
-
 export const startSteemConnectLogin = () => {
   let callbackURL = ''
   if (typeof window !== 'undefined') {
