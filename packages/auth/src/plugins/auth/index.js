@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken'
 import { Cookies } from 'quasar'
 import gitHubLogin from './providers/github'
 import linkSteemAccount from './blockchains/steem'
+import { atob } from 'b2a'
 
 /**
  * Manages the authentication and linking blockchain accounts
@@ -19,9 +20,12 @@ export default async ({ currentRoute, store, redirect, ssrContext }) => {
   const cookies = process.env.SERVER ? Cookies.parseSSR(ssrContext) : Cookies
 
   // Login with any external provider
-  const loginState = currentRoute.query.state
+  const state = currentRoute.query.state || ''
+  const stateVariables = atob(state).split('::')
+  const loginState = stateVariables[0]
+  const redirectUrl = stateVariables[1]
   if (loginState === 'githublogin') {
-    await gitHubLogin({ currentRoute, store, redirect, ssrContext })
+    await gitHubLogin({ currentRoute, store, redirect, ssrContext, redirectUrl })
   } else {
     // Prepare the tokens to enable authenticated calls to the API
     if (cookies.get('access_token')) {
@@ -34,7 +38,7 @@ export default async ({ currentRoute, store, redirect, ssrContext }) => {
 
   // Link blockchain accounts
   if (loginState === 'steemconnectlogin') {
-    await linkSteemAccount({ currentRoute, store })
+    await linkSteemAccount({ currentRoute, store, redirectUrl })
   }
 
   // Load the user information
