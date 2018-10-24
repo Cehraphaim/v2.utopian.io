@@ -2,7 +2,7 @@
 import { required, minLength, maxLength, helpers } from 'vuelidate/lib/validators'
 import { mapGetters, mapActions } from 'vuex'
 import jwt from 'jsonwebtoken'
-import { Cookies, debounce } from 'quasar'
+import { Cookies, debounce, Notify, Loading } from 'quasar'
 
 export default {
   name: 'u-page-users-create',
@@ -90,14 +90,18 @@ export default {
     async submit () {
       this.$v.user.$touch()
 
-      // this.startLoading('Creating account')
+      Loading.show({ message: this.$t('users.create.loading') })
       try {
         await this.saveUser({ username: this.user.username })
-        // this.stopLoading()
-        this.$router.push({ name: 'home' })
+        Loading.hide()
+        this.$router.push({ name: 'home', query: { redirectUrl: this.$route.query.redirectUrl } })
       } catch (err) {
-        // this.stopLoading()
-        // this.showDialog({ title: 'Oops :(', message: 'We couldn\'t create your account. Please try again.' })
+        Loading.hide()
+        Notify.create({
+          type: 'negative',
+          position: 'bottom-right',
+          message: this.$t(`api.error.${err.message}`)
+        })
       }
     }
   }

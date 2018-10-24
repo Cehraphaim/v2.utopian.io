@@ -12,22 +12,13 @@ export const isUsernameAvailable = async (context, username) => {
 }
 
 export const saveUser = async (context, data) => {
+  console.log(Cookies, process.env.SERVER)
   const payload = await API.call({
     context,
     method: 'post',
     url: `/v1/user`,
     data
   })
-  context.commit('auth/setUser', {
-    username: payload.username,
-    authProviders: payload.authProviders,
-    avatarUrl: payload.avatarUrl
-  }, { root: true })
-
-  context.commit('api/setTokens', {
-    accessToken: payload.tokens.access_token,
-    refreshToken: payload.tokens.refresh_token
-  }, { root: true })
 
   Cookies.set('refresh_token', payload.tokens.refresh_token, {
     path: '/',
