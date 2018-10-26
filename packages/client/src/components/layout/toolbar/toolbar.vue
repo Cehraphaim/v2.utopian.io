@@ -22,7 +22,8 @@ export default {
       'startGithubLogin',
       'startSteemConnectLogin'
     ]),
-    redirectToCreate () {
+    redirectToLogin () {
+      window.location = `${process.env.AUTH_DOMAIN}/login/?redirectUrl=${window.location.href}`
     }
   },
   mounted () {

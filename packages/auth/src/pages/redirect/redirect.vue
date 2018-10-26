@@ -1,10 +1,5 @@
 <script>
 export default {
-  preFetch ({ store, redirect }) {
-    if (store.state.auth.user) {
-      window.location = process.env.UTOPIAN_DOMAIN
-    }
-  },
   name: 'u-page-redirect',
   mounted () {
     if (this.$route.query.redirectUrl) {
