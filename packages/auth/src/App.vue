@@ -13,10 +13,12 @@ export default {
   mounted () {
     this.transferToLocalStorage()
 
-    if (this.$route.query.redirectUrl && (this.$route.path === '/' || this.$route.path === '')) {
-      window.location = this.$route.query.redirectUrl
-    } else if (this.$route.path !== '/login' && this.$route.path !== '/login/') {
-      this.$router.push('login')
+    if (this.$route.path === '/') {
+      if (this.$route.query.redirectUrl) {
+        if (window) window.location = this.$route.query.redirectUrl
+      } else {
+        this.$router.push('login')
+      }
     }
   }
 }

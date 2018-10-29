@@ -94,7 +94,8 @@ export default {
       try {
         await this.saveUser({ username: this.user.username })
         Loading.hide()
-        this.$router.push({ name: 'home', query: { redirectUrl: this.$route.query.redirectUrl } })
+
+        if (window) window.location = this.$route.query.redirectUrl || process.env.UTOPIAN_DOMAIN
       } catch (err) {
         Loading.hide()
         Notify.create({
