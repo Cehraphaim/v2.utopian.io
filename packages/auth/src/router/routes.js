@@ -2,8 +2,7 @@
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: () => import('src/pages/redirect/redirect')
+    name: 'home'
   },
   {
     path: '/login',
