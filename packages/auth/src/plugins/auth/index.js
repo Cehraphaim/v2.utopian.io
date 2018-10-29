@@ -1,4 +1,3 @@
-import jwt from 'jsonwebtoken'
 import { Cookies } from 'quasar'
 import gitHubLogin from './providers/github'
 import linkSteemAccount from './blockchains/steem'
@@ -39,13 +38,5 @@ export default async ({ currentRoute, store, redirect, ssrContext }) => {
   // Link blockchain accounts
   if (loginState === 'steemconnectlogin') {
     await linkSteemAccount({ currentRoute, store, redirectUrl })
-  }
-
-  // Load the user information
-  if (cookies.get('access_token')) {
-    const token = jwt.decode(cookies.get('access_token'))
-    if (token.scopes.includes('app')) {
-      await store.dispatch('auth/me')
-    }
   }
 }

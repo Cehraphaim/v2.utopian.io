@@ -12,7 +12,6 @@ export const isUsernameAvailable = async (context, username) => {
 }
 
 export const saveUser = async (context, data) => {
-  console.log(Cookies, process.env.SERVER)
   const payload = await API.call({
     context,
     method: 'post',
