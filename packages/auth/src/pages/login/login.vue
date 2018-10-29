@@ -11,7 +11,7 @@ export default {
   methods: {
     startGithubLogin () {
       const state = btoa(`githublogin::${this.$route.query.redirectUrl}`)
-      window.location = `https://github.com/login/oauth/authorize?scope=read:user,repo&client_id=${process.env.GITHUB_CLIENT_ID}&redirect_uri=${process.env.AUTH_DOMAIN}&state=${state}`
+      window.location = `https://github.com/login/oauth/authorize?scope=read:user,repo&client_id=${process.env.GITHUB_CLIENT_ID}&state=${state}`
     }
   }
 }
